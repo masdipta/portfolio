@@ -1,81 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Details – Dipta Creative</title>
-
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f8f8;
-            color: #555555;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #f8f8f8; color: #555555; }
+        h1, h2, h3, .font-poppins { font-family: 'Poppins', sans-serif; color: #000000; }
+        .bg-accent { background-color: #001fff; }
+        .text-accent { color: #001fff; }
+        .border-accent { border-color: #001fff; }
+        
+        .carousel-slider { transition: transform 0.5s ease-in-out; }
+        .carousel-arrow { opacity: 0; transition: opacity 0.3s ease; }
+        .carousel-wrapper:hover .carousel-arrow { opacity: 1; }
 
-        h1,
-        h2,
-        h3,
-        .font-poppins {
-            font-family: 'Poppins', sans-serif;
-            color: #000000;
-        }
-
-        .bg-accent {
-            background-color: #001fff;
-        }
-
-        .text-accent {
-            color: #001fff;
-        }
-
-        .border-accent {
-            border-color: #001fff;
-        }
-
-        .carousel-slider {
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-arrow {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .carousel-wrapper:hover .carousel-arrow {
-            opacity: 1;
-        }
-
-        .gallery-thumbnail {
+        .gallery-thumbnail { 
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
             cursor: pointer;
             border: 2px solid transparent;
             aspect-ratio: 16 / 10;
             object-fit: cover;
         }
-
-        .gallery-thumbnail:not(.active) {
-            opacity: 0.6;
-        }
-
-        .gallery-thumbnail:hover:not(.active) {
-            opacity: 1;
-        }
-
-        .gallery-thumbnail.active {
-            border-color: #001fff;
-            opacity: 1;
-        }
+        .gallery-thumbnail:not(.active) { opacity: 0.6; }
+        .gallery-thumbnail:hover:not(.active) { opacity: 1; }
+        .gallery-thumbnail.active { border-color: #001fff; opacity: 1; }
     </style>
 </head>
-
 <body class="antialiased">
 
     <!-- =========== Navbar =========== -->
@@ -88,8 +45,7 @@
                 <a href="index.html#about" class="nav-link hover:text-accent transition-colors">About</a>
                 <a href="index.html#contact" class="nav-link hover:text-accent transition-colors">Contact</a>
             </div>
-            <a href="index.html#contact"
-                class="hidden md:inline-block bg-accent text-white font-medium py-2 px-5 rounded-full hover:opacity-90 transition-opacity">
+            <a href="index.html#contact" class="hidden md:inline-block bg-accent text-white font-medium py-2 px-5 rounded-full hover:opacity-90 transition-opacity">
                 Start a Project
             </a>
         </nav>
@@ -98,18 +54,30 @@
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-12">
         <div class="mb-12">
-            <a href="index.html#portfolio"
-                class="inline-flex items-center text-gray-600 hover:text-accent font-semibold transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                        clip-rule="evenodd" />
-                </svg>
+            <a href="index.html#portfolio" class="inline-flex items-center text-gray-600 hover:text-accent font-semibold transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
                 Back to Portfolio
             </a>
         </div>
 
-
+        <!-- Carousel Section with constrained width -->
+        <section class="mb-16 max-w-4xl mx-auto">
+            <div id="carousel-wrapper" class="relative w-full overflow-hidden rounded-xl shadow-xl group carousel-wrapper">
+                <div id="carousel-slider" class="flex carousel-slider bg-gray-200">
+                    <!-- Media will be injected here by JS -->
+                </div>
+                <button id="prev-btn" class="carousel-arrow absolute top-1/2 left-4 -translate-y-1/2 bg-white/70 text-black p-2 rounded-full shadow-md z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                </button>
+                <button id="next-btn" class="carousel-arrow absolute top-1/2 right-4 -translate-y-1/2 bg-white/70 text-black p-2 rounded-full shadow-md z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                </button>
+            </div>
+            
+            <div id="thumbnail-gallery" class="grid grid-cols-4 md:grid-cols-6 gap-4 mt-5">
+                <!-- Thumbnails will be generated here -->
+            </div>
+        </section>
 
         <!-- Centered Content Flow -->
         <section class="max-w-3xl mx-auto text-center">
@@ -120,52 +88,11 @@
                     <p id="project-summary" class="leading-relaxed text-lg"></p>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-base border-t border-b py-8 text-left">
-                    <div>
-                        <h3 class="font-semibold text-black mb-1">Client</h3>
-                        <p id="project-client"></p>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-black mb-1">Role</h3>
-                        <p id="project-role"></p>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-black mb-1">Deliverables</h3>
-                        <p id="project-deliverables"></p>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-black mb-1">Duration</h3>
-                        <p id="project-duration"></p>
-                    </div>
+                    <div><h3 class="font-semibold text-black mb-1">Client</h3><p id="project-client"></p></div>
+                    <div><h3 class="font-semibold text-black mb-1">Role</h3><p id="project-role"></p></div>
+                    <div><h3 class="font-semibold text-black mb-1">Deliverables</h3><p id="project-deliverables"></p></div>
+                    <div><h3 class="font-semibold text-black mb-1">Duration</h3><p id="project-duration"></p></div>
                 </div>
-                <!-- Carousel Section with constrained width -->
-                <section class="mb-16 max-w-4xl mx-auto">
-                    <div id="carousel-wrapper"
-                        class="relative w-full overflow-hidden rounded-xl shadow-xl group carousel-wrapper">
-                        <div id="carousel-slider" class="flex carousel-slider bg-gray-200">
-                            <!-- Media will be injected here by JS -->
-                        </div>
-                        <button id="prev-btn"
-                            class="carousel-arrow absolute top-1/2 left-4 -translate-y-1/2 bg-white/70 text-black p-2 rounded-full shadow-md z-10">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 19l-7-7 7-7" />
-                            </svg>
-                        </button>
-                        <button id="next-btn"
-                            class="carousel-arrow absolute top-1/2 right-4 -translate-y-1/2 bg-white/70 text-black p-2 rounded-full shadow-md z-10">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 5l7 7-7 7" />
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div id="thumbnail-gallery" class="grid grid-cols-4 md:grid-cols-6 gap-4 mt-5">
-                        <!-- Thumbnails will be generated here -->
-                    </div>
-                </section>
                 <div class="text-left">
                     <h2 class="font-poppins text-xl font-semibold mb-4 text-center">Process</h2>
                     <p id="project-process" class="leading-relaxed text-lg"></p>
@@ -176,35 +103,18 @@
                 </div>
             </div>
         </section>
-
+        
         <div class="text-center mt-20">
-            <a href="index.html#contact"
-                class="inline-block bg-accent text-white font-bold py-3 px-10 rounded-full text-lg hover:opacity-90 transition-opacity">Let's
-                Start a Project</a>
+            <a href="index.html#contact" class="inline-block bg-accent text-white font-bold py-3 px-10 rounded-full text-lg hover:opacity-90 transition-opacity">Let's Start a Project</a>
         </div>
         <nav class="mt-24 pt-10 border-t flex justify-between items-center">
             <a id="prev-project" href="#" class="inline-flex items-center hover:text-accent transition-colors group">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6 mr-4 text-gray-400 group-hover:text-accent transition-colors" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-                <div><span class="text-sm">Previous</span>
-                    <p id="prev-title" class="font-semibold text-black"></p>
-                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4 text-gray-400 group-hover:text-accent transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                <div><span class="text-sm">Previous</span><p id="prev-title" class="font-semibold text-black"></p></div>
             </a>
-            <a id="next-project" href="#"
-                class="inline-flex items-center text-right hover:text-accent transition-colors group">
-                <div><span class="text-sm">Next</span>
-                    <p id="next-title" class="font-semibold text-black"></p>
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6 ml-4 text-gray-400 group-hover:text-accent transition-colors" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
+            <a id="next-project" href="#" class="inline-flex items-center text-right hover:text-accent transition-colors group">
+                <div><span class="text-sm">Next</span><p id="next-title" class="font-semibold text-black"></p></div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-4 text-gray-400 group-hover:text-accent transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
             </a>
         </nav>
     </main>
@@ -431,33 +341,7 @@
 
             showSlide(0, true);
 
-
-            // ... kode sebelumnya (showSlide, render media, dll) ...
-
-            // Ambil tombol setelah elemen ada di DOM
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-
-            // ✅ Tambahkan event listener
-            if (prevBtn && nextBtn) {
-                prevBtn.addEventListener('click', () => showSlide(currentIndex - 1));
-                nextBtn.addEventListener('click', () => showSlide(currentIndex + 1));
-            } else {
-                console.warn("Tombol carousel tidak ditemukan! Pastikan ID-nya benar: prev-btn / next-btn");
-            }
-
-            // === SWIPE ===
-            let touchStartX = 0;
-            slider.addEventListener("touchstart", (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-            slider.addEventListener("touchend", (e) => {
-                const touchEndX = e.changedTouches[0].screenX;
-                if (touchEndX < touchStartX - 50) showSlide(currentIndex + 1);
-                if (touchEndX > touchStartX + 50) showSlide(currentIndex - 1);
-            });
-
-            // === NEXT/PREV PROJECT NAVIGATION ===
+            // === NEXT / PREV NAVIGATION ===
             const prevPageIndex = (projectIndex - 1 + projectsData.length) % projectsData.length;
             const nextPageIndex = (projectIndex + 1) % projectsData.length;
 
@@ -467,10 +351,29 @@
             document.getElementById("next-project").href = `project.html?id=${projectsData[nextPageIndex].id}`;
             document.getElementById("next-title").textContent = projectsData[nextPageIndex].title;
 
+            // === SWIPE ===
+            let touchStartX = 0;
+            slider.addEventListener("touchstart", (e) => (touchStartX = e.changedTouches[0].screenX));
+            slider.addEventListener("touchend", (e) => {
+                const touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 50) showSlide(currentIndex + 1);
+                if (touchEndX > touchStartX + 50) showSlide(currentIndex - 1);
+            });
+
+            // === BUTTON EVENT LISTENERS ===
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => showSlide(currentIndex - 1));
+                nextBtn.addEventListener('click', () => showSlide(currentIndex + 1));
+            } else {
+                console.warn("Tombol carousel tidak ditemukan! Pastikan ID-nya benar: prev-btn / next-btn");
+            }
+
             // === TAHUN DI FOOTER ===
             document.getElementById("year").textContent = new Date().getFullYear();
         });
     </script>
 </body>
-
 </html>
