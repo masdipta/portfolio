@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details – Dipta Creative</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8;
+            color: #555555;
+        }
+
+        h1,
+        h2,
+        h3,
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+            color: #000000;
+        }
+
+        .bg-accent {
+            background-color: #001fff;
+        }
+
+        .text-accent {
+            color: #001fff;
+        }
+
+        .border-accent {
+            border-color: #001fff;
+        }
+
+        .carousel-slider {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-arrow {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .carousel-wrapper:hover .carousel-arrow {
+            opacity: 1;
+        }
+
+        .gallery-thumbnail {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+        }
+
+        .gallery-thumbnail:not(.active) {
+            opacity: 0.6;
+        }
+
+        .gallery-thumbnail:hover:not(.active) {
+            opacity: 1;
+        }
+
+        .gallery-thumbnail.active {
+            border-color: #001fff;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- =========== Navbar =========== -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="font-poppins text-2xl font-bold text-black">Dipta.</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html#portfolio" class="nav-link hover:text-accent transition-colors">Portfolio</a>
+                <a href="index.html#process" class="nav-link hover:text-accent transition-colors">Process</a>
+                <a href="index.html#about" class="nav-link hover:text-accent transition-colors">About</a>
+                <a href="index.html#contact" class="nav-link hover:text-accent transition-colors">Contact</a>
+            </div>
+            <a href="index.html#contact"
+                class="hidden md:inline-block bg-accent text-white font-medium py-2 px-5 rounded-full hover:opacity-90 transition-opacity">
+                Start a Project
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <div class="mb-12">
+            <a href="index.html#portfolio"
+                class="inline-flex items-center text-gray-600 hover:text-accent font-semibold transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                        clip-rule="evenodd" />
+                </svg>
+                Back to Portfolio
+            </a>
+        </div>
+
+
+
+        <!-- Centered Content Flow -->
+        <section class="max-w-3xl mx-auto text-center">
+            <h1 id="project-title" class="font-poppins text-4xl lg:text-5xl font-bold mb-12"></h1>
+            <div class="space-y-12">
+                <div class="text-left">
+                    <h2 class="font-poppins text-xl font-semibold mb-4 text-center">Project Summary</h2>
+                    <p id="project-summary" class="leading-relaxed text-lg"></p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-base border-t border-b py-8 text-left">
+                    <div>
+                        <h3 class="font-semibold text-black mb-1">Client</h3>
+                        <p id="project-client"></p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-black mb-1">Role</h3>
+                        <p id="project-role"></p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-black mb-1">Deliverables</h3>
+                        <p id="project-deliverables"></p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-black mb-1">Duration</h3>
+                        <p id="project-duration"></p>
+                    </div>
+                </div>
+                <!-- Carousel Section with constrained width -->
+                <section class="mb-16 max-w-4xl mx-auto">
+                    <div id="carousel-wrapper"
+                        class="relative w-full overflow-hidden rounded-xl shadow-xl group carousel-wrapper">
+                        <div id="carousel-slider" class="flex carousel-slider bg-gray-200">
+                            <!-- Media will be injected here by JS -->
+                        </div>
+                        <button id="prev-btn"
+                            class="carousel-arrow absolute top-1/2 left-4 -translate-y-1/2 bg-white/70 text-black p-2 rounded-full shadow-md z-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button id="next-btn"
+                            class="carousel-arrow absolute top-1/2 right-4 -translate-y-1/2 bg-white/70 text-black p-2 rounded-full shadow-md z-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div id="thumbnail-gallery" class="grid grid-cols-4 md:grid-cols-6 gap-4 mt-5">
+                        <!-- Thumbnails will be generated here -->
+                    </div>
+                </section>
+                <div class="text-left">
+                    <h2 class="font-poppins text-xl font-semibold mb-4 text-center">Process</h2>
+                    <p id="project-process" class="leading-relaxed text-lg"></p>
+                </div>
+                <div>
+                    <h2 class="font-poppins text-xl font-semibold mb-4">Fields</h2>
+                    <p id="project-tags" class="text-base text-gray-800"></p>
+                </div>
+            </div>
+        </section>
+
+        <div class="text-center mt-20">
+            <a href="index.html#contact"
+                class="inline-block bg-accent text-white font-bold py-3 px-10 rounded-full text-lg hover:opacity-90 transition-opacity">Let's
+                Start a Project</a>
+        </div>
+        <nav class="mt-24 pt-10 border-t flex justify-between items-center">
+            <a id="prev-project" href="#" class="inline-flex items-center hover:text-accent transition-colors group">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6 mr-4 text-gray-400 group-hover:text-accent transition-colors" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <div><span class="text-sm">Previous</span>
+                    <p id="prev-title" class="font-semibold text-black"></p>
+                </div>
+            </a>
+            <a id="next-project" href="#"
+                class="inline-flex items-center text-right hover:text-accent transition-colors group">
+                <div><span class="text-sm">Next</span>
+                    <p id="next-title" class="font-semibold text-black"></p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6 ml-4 text-gray-400 group-hover:text-accent transition-colors" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </a>
+        </nav>
+    </main>
+
+    <footer class="bg-neutral py-8 mt-20">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; <span id="year"></span> Dipta. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // === PAKAI DATA YANG SAMA ===
+            const projectsData = [
+                {
+                    id: 1,
+                    title: "Character Concepts",
+                    summary: "Detailed character concept art for a fantasy video game. Focused on creating memorable silhouettes and expressive personalities.",
+                    client: "Fantasy Game Studio",
+                    role: "Illustrator",
+                    deliverables: "Character Sheets, Concept Art",
+                    duration: "3 Weeks",
+                    process: "Started with moodboarding and references, then moved to rough sketches. After client feedback, refined into final high-res illustrations with dynamic poses and expressions.",
+                    tags: ["Illustration", "Character Design", "Digital Painting"],
+                    media: [
+                        { type: "image", src: "https://i.pinimg.com/1200x/8d/59/d3/8d59d31892ba2cd8f663d11b0557fbd2.jpg" },
+                        { type: "image", src: "https://placehold.co/1200x800/334aff/FFFFFF?text=Character+2" },
+                        { type: "image", src: "https://placehold.co/1200x800/6675ff/FFFFFF?text=Character+3" },
+                    ],
+                },
+                {
+                    id: 2,
+                    title: "Logo & Identity",
+                    summary: "Complete brand identity for a modern coffee shop, including logo, color palette, typography, and packaging design.",
+                    client: "Brew & Co.",
+                    role: "Brand Designer",
+                    deliverables: "Logo, Brand Guidelines, Packaging",
+                    duration: "4 Weeks",
+                    process: "Started with brand interview, then created 3 concepts. After selection, refined logo and built full brand system with color, typography, and mockups.",
+                    tags: ["Branding", "Logo Design", "Packaging"],
+                    media: [
+                        { type: "image", src: "https://i.pinimg.com/1200x/8d/59/d3/8d59d31892ba2cd8f663d11b0557fbd2.jpg" },
+                        { type: "image", src: "https://placehold.co/1200x800/334aff/FFFFFF?text=Logo+Mockup" },
+                        { type: "image", src: "https://placehold.co/1200x800/6675ff/FFFFFF?text=Packaging+Design" },
+                    ],
+                },
+                {
+                    id: 3,
+                    title: "Explainer Video",
+                    summary: "A 60-second animated explainer video for a tech startup, simplifying their complex service into an engaging narrative.",
+                    client: "TechFlow Inc.",
+                    role: "Motion Designer",
+                    deliverables: "Animated Video, Storyboard",
+                    duration: "5 Weeks",
+                    process: "Wrote script, created storyboard, designed characters and UI, then animated with smooth transitions and sound design.",
+                    tags: ["Motion Design", "Animation", "Video"],
+                    media: [
+                        { type: "image", src: "https://i.pinimg.com/1200x/8d/59/d3/8d59d31892ba2cd8f663d11b0557fbd2.jpg" },
+                        { type: "image", src: "https://placehold.co/1200x800/334aff/FFFFFF?text=Scene+1" },
+                        { type: "video", provider: "native", src: "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
+                    ],
+                },
+                {
+                    id: 4,
+                    title: "Editorial Piece",
+                    summary: "An editorial illustration for a magazine article about the future of remote work.",
+                    client: "Future Work Magazine",
+                    role: "Illustrator",
+                    deliverables: "Digital Illustration",
+                    duration: "2 Weeks",
+                    process: "Concept development based on article theme, sketch approval, then final digital painting with vibrant colors and symbolic elements.",
+                    tags: ["Illustration", "Editorial", "Digital Art"],
+                    media: [
+                        { type: "image", src: "https://i.pinimg.com/1200x/8d/59/d3/8d59d31892ba2cd8f663d11b0557fbd2.jpg" },
+                        { type: "image", src: "https://placehold.co/1200x800/334aff/FFFFFF?text=Sketch" },
+                    ],
+                },
+                {
+                    id: 5,
+                    title: "Packaging Design",
+                    summary: "Vibrant and playful packaging design for a new line of organic snacks.",
+                    client: "SnackWell Organics",
+                    role: "Graphic Designer",
+                    deliverables: "Packaging Design, Label, Mockups",
+                    duration: "3 Weeks",
+                    process: "Research on market trends, concept sketches, client feedback, final vector design with print-ready files.",
+                    tags: ["Packaging", "Graphic Design", "Branding"],
+                    media: [
+                        { type: "image", src: "https://i.pinimg.com/1200x/8d/59/d3/8d59d31892ba2cd8f663d11b0557fbd2.jpg" },
+                        { type: "image", src: "https://placehold.co/1200x800/334aff/FFFFFF?text=Front+Label" },
+                        { type: "image", src: "https://placehold.co/1200x800/6675ff/FFFFFF?text=Mockup" },
+                    ],
+                },
+                {
+                    id: 6,
+                    title: "Icon Set",
+                    summary: "A custom set of 50 icons for a mobile application, designed for clarity and a consistent visual style.",
+                    client: "AppFlow",
+                    role: "UI/UX Designer",
+                    deliverables: "SVG Icons, Style Guide",
+                    duration: "3 Weeks",
+                    process: "Defined icon style, created wireframe versions, then refined into clean vector icons with consistent stroke and spacing.",
+                    tags: ["UI/UX", "Icons", "Vector"],
+                    media: [
+                        { type: "image", src: "https://i.pinimg.com/1200x/8d/59/d3/8d59d31892ba2cd8f663d11b0557fbd2.jpg" },
+                        { type: "image", src: "https://placehold.co/1200x800/334aff/FFFFFF?text=Icon+Grid" },
+                    ],
+                },
+                {
+                    id: 7,
+                    title: "UI Animation",
+                    summary: "Micro-interactions and UI animations for a new productivity app to enhance user experience.",
+                    client: "ProdApp",
+                    role: "Motion Designer",
+                    deliverables: "Lottie Files, Prototype",
+                    duration: "4 Weeks",
+                    process: "Designed interactions in Figma, exported to After Effects, created smooth animations with easing, delivered Lottie files.",
+                    tags: ["Motion", "UI Animation", "Lottie"],
+                    media: [
+                        { type: "image", src: "https://i.pinimg.com/1200x/8d/59/d3/8d59d31892ba2cd8f663d11b0557fbd2.jpg" },
+                        { type: "video", provider: "native", src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
+                    ],
+                },
+                {
+                    id: 8,
+                    title: "Style Guide",
+                    summary: "A comprehensive brand style guide for a non-profit organization to ensure brand consistency across all materials.",
+                    client: "Green Earth Org",
+                    role: "Brand Designer",
+                    deliverables: "PDF Style Guide, Assets",
+                    duration: "3 Weeks",
+                    process: "Audited existing materials, defined brand voice, colors, typography, logo usage, and created a full PDF guide with examples.",
+                    tags: ["Branding", "Style Guide", "Identity"],
+                    media: [
+                        { type: "image", src: "https://i.pinimg.com/1200x/8d/59/d3/8d59d31892ba2cd8f663d11b0557fbd2.jpg" },
+                        { type: "image", src: "https://placehold.co/1200x800/334aff/FFFFFF?text=Color+Palette" },
+                        { type: "image", src: "https://placehold.co/1200x800/6675ff/FFFFFF?text=Typography" },
+                    ],
+                },
+                {
+                    id: 9,
+                    title: "Logo Reveal",
+                    summary: "An energetic and dynamic logo reveal animation for a creative agency's showreel.",
+                    client: "Creative Studio X",
+                    role: "Motion Designer",
+                    deliverables: "MP4 Animation, After Effects File",
+                    duration: "2 Weeks",
+                    process: "Concept storyboard, designed animation flow, added sound effects, rendered in 4K.",
+                    tags: ["Motion", "Logo Animation", "After Effects"],
+                    media: [
+                        { type: "video", provider: "native", src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" },
+                        { type: "image", src: "https://i.pinimg.com/1200x/8d/59/d3/8d59d31892ba2cd8f663d11b0557fbd2.jpg" },
+                    ],
+                },
+            ];
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = parseInt(urlParams.get("id")) || 1;
+
+            const projectIndex = projectsData.findIndex((p) => p.id === projectId);
+            const project = projectsData[projectIndex];
+
+            if (!project) {
+                document.getElementById("project-title").textContent = "Project Not Found";
+                return;
+            }
+
+            // === ISI DATA ===
+            document.title = `${project.title} – Dipta Creative`;
+            document.getElementById("project-title").textContent = project.title;
+            document.getElementById("project-summary").textContent = project.summary;
+            document.getElementById("project-client").textContent = project.client;
+            document.getElementById("project-role").textContent = project.role;
+            document.getElementById("project-deliverables").textContent = project.deliverables;
+            document.getElementById("project-duration").textContent = project.duration;
+            document.getElementById("project-process").textContent = project.process;
+            document.getElementById("project-tags").textContent = project.tags.join(" • ");
+
+            // === CAROUSEL ===
+            const slider = document.getElementById("carousel-slider");
+            const thumbnailGallery = document.getElementById("thumbnail-gallery");
+            let currentIndex = 0;
+
+            function showSlide(index, instant = false) {
+                if (index >= project.media.length) index = 0;
+                if (index < 0) index = project.media.length - 1;
+                if (instant) slider.style.transition = "none";
+                slider.style.transform = `translateX(-${index * 100}%)`;
+                if (instant) setTimeout(() => (slider.style.transition = "transform 0.5s ease-in-out"), 50);
+                currentIndex = index;
+                thumbnailGallery.querySelectorAll(".gallery-thumbnail").forEach((thumb, i) => {
+                    thumb.classList.toggle("active", i === currentIndex);
+                });
+            }
+
+            // Render media
+            project.media.forEach((mediaItem, index) => {
+                const slide = document.createElement("div");
+                slide.className = "w-full flex-shrink-0 aspect-video flex items-center justify-center bg-black";
+                let mediaElement;
+
+                if (mediaItem.type === "video") {
+                    mediaElement = document.createElement("video");
+                    mediaElement.src = mediaItem.src;
+                    mediaElement.controls = true;
+                    mediaElement.className = "w-full h-full object-cover";
+                } else {
+                    mediaElement = document.createElement("img");
+                    mediaElement.src = mediaItem.src;
+                    mediaElement.alt = `${project.title} - view ${index + 1}`;
+                    mediaElement.className = "w-full h-full object-cover";
+                }
+                slide.appendChild(mediaElement);
+                slider.appendChild(slide);
+
+                // Thumbnail
+                const thumb = document.createElement("img");
+                thumb.src = mediaItem.type === "video" ? "https://placehold.co/400x267/001fff/FFFFFF?text=Video" : mediaItem.src.replace("1200x800", "400x267");
+                thumb.alt = `Thumbnail ${index + 1}`;
+                thumb.className = "gallery-thumbnail w-full rounded-md shadow-sm";
+                thumb.addEventListener("click", () => showSlide(index));
+                thumbnailGallery.appendChild(thumb);
+            });
+
+            showSlide(0, true);
+
+
+            // ... kode sebelumnya (showSlide, render media, dll) ...
+
+            // Ambil tombol setelah elemen ada di DOM
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            // ✅ Tambahkan event listener
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => showSlide(currentIndex - 1));
+                nextBtn.addEventListener('click', () => showSlide(currentIndex + 1));
+            } else {
+                console.warn("Tombol carousel tidak ditemukan! Pastikan ID-nya benar: prev-btn / next-btn");
+            }
+
+            // === SWIPE ===
+            let touchStartX = 0;
+            slider.addEventListener("touchstart", (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            slider.addEventListener("touchend", (e) => {
+                const touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 50) showSlide(currentIndex + 1);
+                if (touchEndX > touchStartX + 50) showSlide(currentIndex - 1);
+            });
+
+            // === NEXT/PREV PROJECT NAVIGATION ===
+            const prevPageIndex = (projectIndex - 1 + projectsData.length) % projectsData.length;
+            const nextPageIndex = (projectIndex + 1) % projectsData.length;
+
+            document.getElementById("prev-project").href = `project.html?id=${projectsData[prevPageIndex].id}`;
+            document.getElementById("prev-title").textContent = projectsData[prevPageIndex].title;
+
+            document.getElementById("next-project").href = `project.html?id=${projectsData[nextPageIndex].id}`;
+            document.getElementById("next-title").textContent = projectsData[nextPageIndex].title;
+
+            // === TAHUN DI FOOTER ===
+            document.getElementById("year").textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+
+</html>
