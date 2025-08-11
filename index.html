@@ -64,6 +64,13 @@
                 background-size: 10px 2px;
                 z-index: -1;
             }
+            /* kecilkan frame dan spacing supaya muat di layar hp */
+  .frame-1 { width: 140px !important; height: 196px !important; transform: translateX(-100%) rotate(-20deg) !important; }
+  .frame-2 { width: 140px !important; height: 196px !important; transform: translateX(-50%) rotate(-10deg) !important; }
+  .frame-3 { width: 160px !important; height: 224px !important; transform: rotate(0deg) !important; }
+  .frame-4 { width: 140px !important; height: 196px !important; transform: translateX(50%) rotate(10deg) !important; }
+  .frame-5 { width: 140px !important; height: 196px !important; transform: translateX(100%) rotate(20deg) !important; }
+
         }
     </style>
 </head>
@@ -112,7 +119,7 @@
 
             <!-- Interactive Image Gallery -->
 
-     <div class="relative w-full h-96 mt-12 flex items-center justify-center">
+    <div class="relative w-full h-96 mt-12 flex items-center justify-center">
   <!-- Image 1 Wrapper (Frame) -->
   <div 
     class="absolute overflow-hidden rounded-lg shadow-xl transition-transform duration-300 ease-in-out hover:z-30 hover:scale-110 hover:-translate-y-6"
@@ -174,6 +181,7 @@
     />
   </div>
 </div>
+
 
 
 
